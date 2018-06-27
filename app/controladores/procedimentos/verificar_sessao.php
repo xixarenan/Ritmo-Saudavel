@@ -25,4 +25,5 @@ if (isset($_SESSION["userInfo"]["usuario"])) { // usuario definido, mantem infor
 if (!isset($_SESSION["userInfo"]["usuario"])) {
 	@session_destroy();
 	require_once(__DIR__ . '/../../views/login.php');
+	exit();
 }
