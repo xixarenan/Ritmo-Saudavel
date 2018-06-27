@@ -6,9 +6,15 @@
 		<div class="login-box-body">
 			<p class="login-box-msg">Entre para iniciar sua sessão:</p>
 
+			<?php if (isset($_GET['msg'])) { ?>
+				<div class="alert alert-danger">
+					<strong>Oops!</strong> <?= urldecode($_GET['msg']) ?>
+				</div>
+			<?php } ?>
+
 			<form action="app/controladores/acesso/entrar.php" method="post">
 				<div class="form-group has-feedback">
-					<input name="usuario" type="text" class="form-control" placeholder="Usuário" required>
+					<input name="usuario" type="text" class="form-control" placeholder="Usuário" <?= (isset($_GET['usuario'])) ? 'value="' . $_GET['usuario'] . '"' : '' ?> required>
 					<span class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
