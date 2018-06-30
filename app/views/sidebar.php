@@ -3,7 +3,7 @@
 	/** Retorna as configurações para definir como ativo se for o requisitado */
 	function definirComoAtivo(string $menu) {
 		if (isset($_GET['view']) && $_GET['view'] == $menu) {
-			return ' class="active" style="pointer-events: none"';
+			return ' class="active"';
 		} else {
 			return '';
 		}
