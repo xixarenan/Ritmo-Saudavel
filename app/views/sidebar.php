@@ -1,3 +1,15 @@
+<?php
+
+	/** Retorna as configurações para definir como ativo se for o requisitado */
+	function definirComoAtivo(string $menu) {
+		if (isset($_GET['view']) && $_GET['view'] == $menu) {
+			return ' class="active" style="pointer-events: none"';
+		} else {
+			return '';
+		}
+	}
+
+?>
 <aside class="main-sidebar">
 	<section class="sidebar">
 		<div class="user-panel">
@@ -11,13 +23,13 @@
 		</div>
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">MENU PRINCIPAL</li>
-			<li<?= (isset($_GET['view']) && $_GET['view'] == 'alimentos') ? ' class="active" style="pointer-events: none"' : '' ?>>
+			<li<?= definirComoAtivo('alimentos') ?>>
 				<a href="index.php?view=alimentos">
 					<i class="fa fa-cutlery text-red"></i>
 					<span>Alimentos</span>
 				</a>
 			</li>
-			<li<?= (isset($_GET['view']) && $_GET['view'] == 'exercicios') ? ' class="active" style="pointer-events: none"' : '' ?>>
+			<li<?= definirComoAtivo('exercicios') ?>>
 				<a href="index.php?view=exercicios">
 					<i class="fa fa-bolt text-aqua"></i>
 					<span>Exercícios</span>
