@@ -32,28 +32,23 @@
 	<?php require_once('./app/views/navbar.php'); ?>
 	<?php require_once('./app/views/sidebar.php'); ?>
 	<div class="content-wrapper">
-		<section class="content-header">
-			<?php
-				if (isset($_GET['view'])) {
-					switch ($_GET['view']) {
-						case 'alimentos':
-							include('app/controladores/paginas/alimentos.php');
-							break;
-						case 'exercicios':
-							include('app/controladores/paginas/exercicios.php');
-							break;
-						default:
-							echo paginaNaoEncontrada();
-							break;
-					}
-				} else {
-					echo mensagemBoasVindas();
+		<?php
+			if (isset($_GET['view'])) {
+				switch ($_GET['view']) {
+					case 'alimentos':
+						include('app/controladores/paginas/alimentos.php');
+						break;
+					case 'exercicios':
+						include('app/controladores/paginas/exercicios.php');
+						break;
+					default:
+						echo paginaNaoEncontrada();
+						break;
 				}
-			?>
-		</section>
-		<section class="content">
-				
-		</section>
+			} else {
+				echo mensagemBoasVindas();
+			}
+		?>
 	</div>
 </div>
 <?php require_once('./app/views/foot.php'); ?>
