@@ -1,6 +1,30 @@
 <?php
 	// Verifica sessao
 	require_once('./app/controladores/procedimentos/verificar_sessao.php');
+
+	/** Retorna uma mensagem de boas vindas */
+	function mensagemBoasVindas() {
+		return '<section class="content">'
+				. '<div class="row" style="margin-top:13%">'
+					. '<div class="col-xs-12 text-center">'
+						. '<h1>Bem vindo(a), '. ucfirst(explode(' ', $_SESSION["userInfo"]["nome"])[0]) .'!</h1>'
+						. '<h2><small>Este é o aplicativo Rítmo Saudável, feito para ajudar e auxiliá-lo(a) com sua saúde e bem-estar.<br>Use os menus da barra lateral para acessar as demais partes do aplicativo.</small></h2>'
+					. '</div>'
+				. '</div>'
+			. '</section>';
+	}
+
+	/** Retorna uma mensagem dizendo que a página requisitada não foi encontrada */
+	function paginaNaoEncontrada() {
+		return '<section class="content">'
+				. '<div class="row" style="margin-top:13%">'
+					. '<div class="col-xs-12 text-center">'
+						. '<h1>Desculpe, '. ucfirst(explode(' ', $_SESSION["userInfo"]["nome"])[0]) .'!</h1>'
+						. '<h2><small>Não conseguimos encontrar esta página do aplicativo que você está tentando acessar.</small></h2>'
+					. '</div>'
+				. '</div>'
+			. '</section>';
+	}
 ?>
 
 <?php require_once('./app/views/head.php'); ?>
@@ -13,17 +37,17 @@
 				if (isset($_GET['view'])) {
 					switch ($_GET['view']) {
 						case 'alimentos':
-							echo '<h1>Alimentos</h1>';
+							include('app/controladores/paginas/alimentos.php');
 							break;
 						case 'exercicios':
-							echo '<h1>Exercícios</h1>';
+							include('app/controladores/paginas/exercicios.php');
 							break;
 						default:
-							echo '<h1>Ainda não implementado</h1>';
+							echo paginaNaoEncontrada();
 							break;
 					}
 				} else {
-					echo '<h1>Início</h1>';
+					echo mensagemBoasVindas();
 				}
 			?>
 		</section>
@@ -31,11 +55,5 @@
 				
 		</section>
 	</div>
-	<footer class="main-footer">
-		<div class="pull-right hidden-xs">
-			<b>Versão</b> 1.0.0
-		</div>
-		<strong>Copyright &copy; 2018</strong> - Todos os direitos reservados.
-	</footer>
 </div>
 <?php require_once('./app/views/foot.php'); ?>
